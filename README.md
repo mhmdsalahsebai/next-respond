@@ -139,6 +139,21 @@ Output:
 }
 ```
 
+4. Custom Message
+
+```javascript
+InternalServerError(res, "Custom Error Message");
+```
+
+Output:
+
+```json
+{
+  "statusCode": 500,
+  "message": "Custom Error Message"
+}
+```
+
 ## Using HttpStatus and HttpStatusMessages
 
 You can also import HttpStatus and HttpStatusMessages to use them directly when building custom responses or performing other status-related tasks.
