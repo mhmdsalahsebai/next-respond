@@ -1,0 +1,32 @@
+{
+  "name": "next-respond",
+  "version": "1.0.0",
+  "description": "Simplify your NextJS API responses with clean, readable, and standardized HTTP status codes and messages.",
+  "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "nextjs",
+    "next",
+    "exceptions",
+    "http",
+    "http-exception",
+    "api",
+    "error-handling"
+  ],
+  "author": "Mohamed Salah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhmdsalahsebai/next-respond.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mhmdsalahsebai/next-respond/issues"
+  },
+  "homepage": "https://github.com/mhmdsalahsebai/next-respond#README"
+}
