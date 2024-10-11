@@ -47,6 +47,8 @@ const {
   ServiceUnavailable,
   GatewayTimeout,
   HttpVersionNotSupported,
+  sendResponse,
+  HttpStatus,
 } = require("../src/index");
 
 let res;
@@ -486,6 +488,70 @@ describe("HTTP Status Response Functions", () => {
     expect(res.json).toHaveBeenCalledWith({
       statusCode: 203,
       message: "Non-authoritative information",
+    });
+  });
+});
+
+describe("sendResponse", () => {
+  test("sends response with status code and default message", () => {
+    sendResponse(HttpStatus.OK, res);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+      message: "OK",
+    });
+  });
+
+  test("sends response with custom message", () => {
+    const customMessage = "Custom OK message";
+    sendResponse(HttpStatus.OK, res, customMessage);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+      message: customMessage,
+    });
+  });
+
+  test("sends response with additional data", () => {
+    const data = { key: "value" };
+    sendResponse(HttpStatus.OK, res, null, data);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+      message: "OK",
+      key: "value",
+    });
+  });
+
+  test("sends response without message when defaultMessage is false", () => {
+    sendResponse(HttpStatus.OK, res, null, {}, false);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+    });
+  });
+
+  test("sends response with custom message when defaultMessage is false", () => {
+    const customMessage = "Custom message";
+    sendResponse(HttpStatus.OK, res, customMessage, {}, false);
+
+    console.log("Res", res);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+      message: customMessage,
+    });
+  });
+
+  test("sends response with custom message, data, and defaultMessage true", () => {
+    const customMessage = "Custom OK message";
+    const data = { key: "value" };
+    sendResponse(HttpStatus.OK, res, customMessage, data, true);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+    expect(res.json).toHaveBeenCalledWith({
+      statusCode: HttpStatus.OK,
+      message: customMessage,
+      key: "value",
     });
   });
 });

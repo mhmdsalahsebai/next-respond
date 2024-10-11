@@ -47,9 +47,12 @@ const {
   ServiceUnavailable,
   GatewayTimeout,
   HttpVersionNotSupported,
+  sendResponse,
 } = require("./responses");
+const { HttpStatus, HttpStatusMessages } = require("./statusCodes");
 
 module.exports = {
+  sendResponse,
   Continue,
   SwitchingProtocols,
   Processing,
@@ -98,4 +101,6 @@ module.exports = {
   ServiceUnavailable,
   GatewayTimeout,
   HttpVersionNotSupported,
+  HttpStatus,
+  HttpStatusMessages,
 };
